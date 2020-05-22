@@ -1,4 +1,4 @@
-# Bili-Luckdog
+# Bili-Luckydog
 
 > B站评论区抽奖工具
 >
