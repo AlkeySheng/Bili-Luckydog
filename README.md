@@ -1,8 +1,6 @@
-# B站评论区抽奖
+# Bili-Luckdog
 
 > B站评论区抽奖工具
->
-> Bili-Luckdog
 >
 > 2020.5.21
 
