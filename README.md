@@ -10,3 +10,5 @@ pip install requests
 ```
 
 **Blog: [i.2017.work](https://i.2017.work)**
+
+![Demo](https://i.2017.work/2020/05/22/Bili-Luckydog/Bili-Luckdog.gif)
