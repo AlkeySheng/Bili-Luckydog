@@ -1,6 +1,6 @@
 '''
 Project: Bili-Luckydog
-BiliBiliÆÀÂÛÇø³é½± (½öÆÀÂÛ,»Ø¸´ÎŞĞ§)
+BiliBiliè¯„è®ºåŒºæŠ½å¥– (ä»…è¯„è®º,å›å¤æ— æ•ˆ)
 Coder: Alkey Sheng [i.2017.work]
 2020.5.21
 '''
@@ -10,13 +10,13 @@ import random
 import time
 import datetime
 
-# setting  ±£Áô""
+# setting  ä¿ç•™""
 # ----------------------------------------------------------
-bvid = ""  # ÊÓÆµBVºÅ   Èç: "BV1NZ4y147X6"
-num = ""   # ³é½±¸öÊı   Èç: "1"
+bvid = ""  # è§†é¢‘BVå·   å¦‚: "BV1NZ4y147X6"
+num = ""   # æŠ½å¥–ä¸ªæ•°   å¦‚: "1"
 # ----------------------------------------------------------
 
-# ½«BÕ¾BVºÅ×ª»»ÎªAVºÅ
+# å°†Bç«™BVå·è½¬æ¢ä¸ºAVå·
 
 
 def getAid(bvid):
@@ -25,7 +25,7 @@ def getAid(bvid):
     aid = root["data"]["aid"]
     return aid
 
-# »ñÈ¡Ä³Ò»Ò³JSON
+# è·å–æŸä¸€é¡µJSON
 
 
 def getJson(aid, page=1):
@@ -35,7 +35,7 @@ def getJson(aid, page=1):
     return root
 
 
-# ÌáÈ¡JSONÖĞÃûµ¥Ìí¼Óµ½ÁĞ±í
+# æå–JSONä¸­åå•æ·»åŠ åˆ°åˆ—è¡¨
 def addLi(root, li):
     members = root["data"]["replies"]
     for member in members:
@@ -46,7 +46,7 @@ def addLi(root, li):
         print("{:>3d}: {}".format(len(li), uname))
 
 
-# Ëæ»úÊı³é½±
+# éšæœºæ•°æŠ½å¥–
 def getDog(n, li):
     lucky_indexs = set()
     while len(lucky_indexs) < n:
@@ -55,32 +55,35 @@ def getDog(n, li):
     return lucky_indexs
 
 
-if bvid == "":
-    bvid = input("ÊÓÆµBVºÅ Èç: BV1NZ4y147X6\n")
-if num == "":
-    num = input("³é½±¸öÊı Èç: 1\n")
+def main(bvid, num):
+    if bvid == "":
+        bvid = input("è§†é¢‘BVå· å¦‚: BV1NZ4y147X6\n")
+    if num == "":
+        num = input("æŠ½å¥–ä¸ªæ•° å¦‚: 1\n")
 
-aid = getAid(bvid)
-n = int(num)
-li = []
+    aid = getAid(bvid)
+    n = int(num)
+    li = []
 
+    print("members:\n-----------------------------")
+    page_1 = getJson(aid)
+    pages = (page_1["data"]["page"]["count"]) // (
+        page_1["data"]["page"]["size"]) + 1
+    # print(pages)
+    for i in range(1, pages+1):
+        root = getJson(aid, i)
+        addLi(root, li)
 
-print("members:\n-----------------------------")
-page_1 = getJson(aid)
-pages = (page_1["data"]["page"]["count"]) // (
-    page_1["data"]["page"]["size"]) + 1
-# print(pages)
-for i in range(1, pages+1):
-    root = getJson(aid, i)
-    addLi(root, li)
-
-
-print("-----------------------------")
-time.sleep(1)
-lucky_indexs = list(getDog(n, li))
-for i in range(n):
-    print("\n", " Luckydog:", li[lucky_indexs[i]][0],
-          "\n  comment:", li[lucky_indexs[i]][1])
+    print("-----------------------------")
     time.sleep(1)
+    lucky_indexs = list(getDog(n, li))
+    for i in range(n):
+        print("\n", " Luckydog:", li[lucky_indexs[i]][0],
+              "\n  comment:", li[lucky_indexs[i]][1])
+        time.sleep(1)
 
-print("\nDate-Time:", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    print("\nDate-Time:", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
+
+if __name__ == "__main__":
+    main(bvid, num)
