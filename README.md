@@ -4,6 +4,9 @@
 >
 > 2020.5.21
 
-第三方库`requests`
+安装第三方库`requests`
+```shell
+pip install requests
+```
 
 **Blog: [i.2017.work](https://i.2017.work)**
