@@ -14,4 +14,4 @@ pip install requests
 
   
 
-![Demo](https://i.2017.work/2020/05/22/Bili-Luckydog/Bili-Luckdog.gif)
+![Demo.](https://i.2017.work/2020/05/22/Bili-Luckydog/Bili-Luckdog.gif)
